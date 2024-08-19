@@ -1,0 +1,6 @@
+api.txt
+node_modules
+/ollma
+/chroma
+build
+.env

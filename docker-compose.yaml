@@ -1,0 +1,29 @@
+services:
+    postgres:
+        image: postgres:latest
+        environment:
+            POSTGRES_PASSWORD: password
+        ports:
+            - 5432:5432
+        container_name: postgres
+
+        volumes:
+            - postgres:/var/lib/postgresql/data
+    chroma:
+        image: ghcr.io/chroma-core/chroma:latest
+        volumes:
+            - index_data:/chroma/.chroma/index
+        ports:
+            - 8000:8000
+    ollma:
+        image: ollama/ollama
+        volumes:
+            - ./ollma:/root/.ollama
+        ports:
+            - 11434:11434
+        container_name: ollama
+        profiles:
+          - exclude
+volumes:
+    postgres:
+    index_data:
